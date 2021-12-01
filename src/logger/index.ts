@@ -10,7 +10,7 @@ const levels = {
 };
 
 const level = () => {
-    const env = envVars.ENVIRONMENT;
+    const env = envVars.NODE_ENV;
     const isNotProduction = env != 'production';
     return isNotProduction ? 'debug' : 'warn';
 };
