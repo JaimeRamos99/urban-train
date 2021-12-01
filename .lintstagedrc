@@ -1,0 +1,8 @@
+{
+    "src/**/*.+(js|json|ts)": [
+      "yarn eslint:lint"
+    ],
+    "src/**/*.{js,ts,json}": [
+      "yarn prettier:check"
+    ]
+}
