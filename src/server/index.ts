@@ -5,6 +5,7 @@ import { WebServer } from '../application/interfaces/server';
 import { morganMiddleware } from '../middlewares/morgan';
 import { Logger } from '../logger';
 import { envVars } from '../common/utils/envVarsHandler';
+import bodyParser from 'body-parser';
 
 export default class implements WebServer {
     private app: Express;
@@ -17,6 +18,7 @@ export default class implements WebServer {
     }
 
     setup(): void {
+        this.app.use(bodyParser.json());
         this.app.use(morganMiddleware);
         this.app.use(routes);
     }
