@@ -10,6 +10,7 @@ COPY package*.json ./
 COPY tsconfig.json ./
 COPY src /app/src
 
+#add env variables
 RUN ls -a
 
 RUN yarn install
