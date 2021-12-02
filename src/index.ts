@@ -7,10 +7,10 @@ const main = async () => {
     server.start();
 };
 
-process.on('uncaughtException', () => server.stop());
-process.on('SIGINT', () => server.stop());
-process.on('SIGTERM', () => server.stop());
-process.on('SIGHUP', () => server.stop());
+process.on('uncaughtException', (error) => server.stop(error));
+process.on('SIGINT', (error) => server.stop(error));
+process.on('SIGTERM', (error) => server.stop(error));
+process.on('SIGHUP', (error) => server.stop(error));
 
 main();
 

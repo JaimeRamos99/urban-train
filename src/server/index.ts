@@ -26,8 +26,9 @@ export default class implements WebServer {
         Logger.info(`Server started on port ${envVars.PORT}`);
     }
 
-    stop(): void {
+    stop(error: any): void {
         this.server.close();
+        Logger.error(error);
     }
 
     returnApp(): Express {

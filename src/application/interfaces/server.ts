@@ -1,5 +1,5 @@
 export interface WebServer {
     setup(): void;
     start(port: number): void;
-    stop(): void;
+    stop(error: any): void;
 }

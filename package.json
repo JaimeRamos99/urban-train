@@ -43,11 +43,11 @@
         "typescript": "^4.3.4"
     },
     "dependencies": {
+        "@types/ioredis": "^4.28.1",
         "@types/morgan": "^1.9.3",
-        "@types/redis": "^2.8.32",
         "express": "^4.17.1",
+        "ioredis": "^4.28.2",
         "morgan": "^1.10.0",
-        "redis": "^4.0.0",
         "swagger-ui-express": "^4.1.6",
         "winston": "^3.3.3"
     }
