@@ -1,4 +1,3 @@
-//import { Logger } from '../logger';
 import IORedis from 'ioredis';
 import { CacheStorage } from '../application/interfaces/cache';
 export default class Redis implements CacheStorage {
