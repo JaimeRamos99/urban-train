@@ -6,7 +6,9 @@ export async function purchaseController(req: Request, res: Response, next: Next
     try {
         Logger.debug(res);
 
-        return await savePurchase(req.body);
+        await savePurchase(req.body);
+
+        return res.status(200).json({});
     } catch (error) {
         next(error);
     }

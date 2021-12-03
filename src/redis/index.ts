@@ -4,7 +4,7 @@ export default class Redis implements CacheStorage {
     private redisInstance: any;
 
     constructor() {
-        this.redisInstance = new IORedis();
+        this.redisInstance = new IORedis({ host: 'redis' });
     }
 
     async set(key: string, value: number) {
