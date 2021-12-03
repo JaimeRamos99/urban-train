@@ -5,4 +5,10 @@ export const constants = {
         createSale: '/registrar-venta',
         health: '/health',
     },
+
+    joiSchemaOptions: {
+        abortEarly: false,
+        allowUnknown: true,
+        stripUnknown: true,
+    },
 };
