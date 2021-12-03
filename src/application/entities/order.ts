@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-const orderSchema = Joi.object({
+const orderJoiSchema = Joi.object({
     id: Joi.string().required(),
     fecha: Joi.date().required(),
     cantidad: Joi.number().required(),
@@ -8,4 +8,4 @@ const orderSchema = Joi.object({
     nombreProducto: Joi.string().required(),
 });
 
-export { orderSchema };
+export { orderJoiSchema };

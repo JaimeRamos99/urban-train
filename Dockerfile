@@ -10,12 +10,13 @@ COPY package*.json ./
 COPY tsconfig.json ./
 COPY src /app/src
 
-#add env variables
-RUN ls -a
+ENV NODE_ENV=local
+ENV PORT=3000
 
+RUN ls -a
 RUN yarn install
 RUN yarn run build
 
 EXPOSE 3000
 
-CMD ["yarn", "prod"]
+CMD ["yarn", "dev"]

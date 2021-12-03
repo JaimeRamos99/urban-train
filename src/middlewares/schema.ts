@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { orderSchema } from '../application/entities/order';
+import { orderJoiSchema } from '../application/entities/order';
 
 function schemaValidation(req: Request, res: Response, next: NextFunction) {
     const options = {
@@ -8,7 +8,7 @@ function schemaValidation(req: Request, res: Response, next: NextFunction) {
         stripUnknown: true, // remove unknown props
     };
 
-    const { error, value } = orderSchema.validate(req.body, options);
+    const { error, value } = orderJoiSchema.validate(req.body, options);
 
     if (error) {
         res.status(500).json({ error: 'invalid entity' });

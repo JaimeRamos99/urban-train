@@ -6,6 +6,7 @@ import { morganMiddleware } from '../middlewares/morgan';
 import { Logger } from '../logger';
 import { envVars } from '../common/utils/envVarsHandler';
 import bodyParser from 'body-parser';
+import { createConnection } from '../mongo';
 
 export default class implements WebServer {
     private app: Express;
@@ -17,10 +18,11 @@ export default class implements WebServer {
         this.app = express();
     }
 
-    setup(): void {
+    async setup(): Promise<void> {
         this.app.use(bodyParser.json());
         this.app.use(morganMiddleware);
         this.app.use(routes);
+        await createConnection();
     }
 
     start(): void {
