@@ -1,10 +1,10 @@
 import { Order } from '../application/interfaces/order';
 import { RedisObject } from '../application/interfaces/redisObject';
 import { calculateRedisTTL } from '../common/utils/calculateRedisTTL';
-import { savePurchase } from '../mongo';
+import { saveTransaction } from '../mongo';
 import Redis from '../redis';
 
-export async function savePurchaseService(order: Order, purchaseThisMonth: number, totalStock: number) {
+export async function saveTransactionService(order: Order, purchaseThisMonth: number, totalStock: number) {
     // new redis object
     const new_order_data: RedisObject = {
         purchaseThisMonth: purchaseThisMonth,
@@ -17,5 +17,5 @@ export async function savePurchaseService(order: Order, purchaseThisMonth: numbe
     await redis.set(order.idProducto, new_order_data, TTL);
 
     // add order to the database
-    await savePurchase(order);
+    await saveTransaction(order);
 }

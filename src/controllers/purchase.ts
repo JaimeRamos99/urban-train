@@ -1,34 +1,37 @@
 import { NextFunction, Request, Response } from 'express';
 import Redis from '../redis';
 import { RedisObject } from '../application/interfaces/redisObject';
-import { getStock } from '../mongo';
+import { getStockFromDB } from '../mongo';
 import { calculateCurrentStock } from '../services/getCurrentStock';
-import { savePurchaseService } from '../services/savePurchase';
+import { saveTransactionService } from '../services/saveTransaction';
 
 export async function purchaseController(req: Request, res: Response, next: NextFunction): Promise<any> {
     try {
-        const { idProducto, cantidad } = req.body;
-        const redis = new Redis();
-        const order_data: RedisObject = await redis.get(idProducto);
+        req.body.tipoOperacion = 'PURCHASE';
+        const order = req.body;
+        const { idProducto, cantidad } = order;
 
-        // there's not info about that product in the cache
-        if (!order_data) {
-            const transactions = await getStock(idProducto);
+        const redis = new Redis();
+        const product_data: RedisObject = await redis.get(idProducto);
+
+        // there's no record in the cache
+        if (!product_data) {
+            const transactions = await getStockFromDB(idProducto);
             const availableItems = calculateCurrentStock(transactions, idProducto);
-            await savePurchaseService(req.body, cantidad, availableItems);
-            return res.status(400).json({ availableItems });
+            await saveTransactionService(order, cantidad, availableItems);
         } else {
             // check requested quantity does not exceeds the limit
-            if (order_data.purchaseThisMonth + cantidad > 30) {
+            if (product_data.purchaseThisMonth + cantidad > 30) {
                 return res.status(400).json({ status: 'not enough slots available for this item' });
             }
 
-            await savePurchaseService(
-                req.body,
-                order_data.purchaseThisMonth + cantidad,
-                order_data.totalStock + cantidad,
+            await saveTransactionService(
+                order,
+                product_data.purchaseThisMonth + cantidad,
+                product_data.totalStock + cantidad,
             );
         }
+        return res.status(200).json({ error: false, message: 'successful purchase' });
     } catch (error) {
         next(error);
     }
