@@ -16,4 +16,8 @@ export default class Redis implements CacheStorage {
     async get(key: string) {
         return await this.redisInstance.get(key);
     }
+
+    public async disconnect(): Promise<void> {
+        this.redisInstance.quit();
+    }
 }

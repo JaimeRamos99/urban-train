@@ -6,7 +6,8 @@ import { morganMiddleware } from '../middlewares/morgan';
 import { Logger } from '../logger';
 import { envVars } from '../common/utils/envVarsHandler';
 import bodyParser from 'body-parser';
-import { createConnection } from '../mongo';
+import { closeConnection, createConnection } from '../mongo';
+import Redis from '../redis';
 
 export default class implements WebServer {
     private app: Express;
@@ -30,7 +31,10 @@ export default class implements WebServer {
         Logger.info(`Server started on port ${envVars.PORT}`);
     }
 
-    stop(error: any): void {
+    async stop(error: any): Promise<void> {
+        const redis = new Redis();
+        await redis.disconnect();
+        closeConnection();
         this.server.close();
         Logger.error(error);
     }
