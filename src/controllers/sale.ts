@@ -1,18 +1,14 @@
 import { NextFunction, Request, Response } from 'express';
-import { RedisObject } from '../application/interfaces/redisObject';
+import { OrderType } from '../application/enums/orderType';
 import { getStockFromDB } from '../mongo';
-import Redis from '../redis';
 import { calculateCurrentStock } from '../services/getCurrentStock';
+import { getRedisData } from '../services/getRedisData';
 import { saveTransactionService } from '../services/saveTransaction';
 
 export async function saleController(req: Request, res: Response, next: NextFunction): Promise<any> {
     try {
-        req.body.tipoOperacion = 'SALE';
-        const order = req.body;
+        const { product_data, order }: any = await getRedisData(req.body, OrderType.sale);
         const { idProducto, cantidad } = order;
-
-        const redis = new Redis();
-        const product_data: RedisObject = await redis.get(idProducto);
 
         if (!product_data) {
             const transactions = await getStockFromDB(idProducto);
