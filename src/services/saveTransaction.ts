@@ -14,7 +14,7 @@ export async function saveTransactionService(order: Order, purchaseThisMonth: nu
     const TTL = calculateRedisTTL();
 
     const redis = new Redis();
-    await redis.set(order.idProducto, new_order_data, TTL);
+    await redis.set(order.productID, new_order_data, TTL);
 
     // add order to the database
     await saveTransaction(order);

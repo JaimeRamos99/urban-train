@@ -4,22 +4,22 @@ import { getCurrentDate, getCurrentTime } from '../../common/utils/getTime';
 
 interface OrderMongo extends Document {
     id: string;
-    fecha: string;
-    hora?: string;
-    cantidad: number;
-    idProducto: string;
-    nombreProducto: string;
-    tipoOperacion?: OrderType;
+    date: string;
+    time?: string;
+    quantity: number;
+    productID: string;
+    productName: string;
+    orderType?: OrderType;
 }
 
 const orderSchema = new Schema({
     id: { type: String, required: true },
-    fecha: { type: String, required: true, default: getCurrentDate() },
-    hora: { type: String, default: getCurrentTime() },
-    cantidad: { type: Number, required: true },
-    idProducto: { type: String, required: true },
-    nombreProducto: { type: String, required: true },
-    tipoOperacion: { type: String, enum: OrderType },
+    date: { type: String, required: true, default: getCurrentDate() },
+    time: { type: String, default: getCurrentTime() },
+    quantity: { type: Number, required: true },
+    productID: { type: String, required: true },
+    productName: { type: String, required: true },
+    orderType: { type: String, enum: OrderType },
 });
 
 export { orderSchema, OrderMongo };

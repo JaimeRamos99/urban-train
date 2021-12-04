@@ -2,10 +2,10 @@ import Joi from 'joi';
 
 const orderJoiSchema = Joi.object({
     id: Joi.string().required(),
-    fecha: Joi.date().required(),
-    cantidad: Joi.number().required(),
-    idProducto: Joi.string().required(),
-    nombreProducto: Joi.string().required(),
+    date: Joi.date().required(),
+    quantity: Joi.number().required(),
+    productID: Joi.string().required(),
+    productName: Joi.string().required(),
 });
 
 export { orderJoiSchema };

@@ -9,7 +9,8 @@ export async function purchaseController(req: Request, res: Response, next: Next
     try {
         const { product_data, order }: any = await getRedisData(req.body, OrderType.purchase);
         const { idProducto, cantidad } = order;
-        // there's no record in the cache
+
+        // there's no record in  cache
         if (!product_data) {
             const transactions = await getStockFromDB(idProducto);
             const availableItems = calculateCurrentStock(transactions, idProducto);
