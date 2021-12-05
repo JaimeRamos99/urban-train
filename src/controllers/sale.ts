@@ -8,10 +8,10 @@ import { Order } from '../application/interfaces/order';
 
 export async function saleController(req: Request, res: Response, next: NextFunction): Promise<any> {
     try {
-        const { product_data, order }: any = await getRedisData(req.body, OrderType.sale);
+        const { productData, order }: any = await getRedisData(req.body, OrderType.sale);
         const { productID, quantity }: Order = order;
 
-        if (!product_data) {
+        if (!productData) {
             const transactions = await getStockFromDB(productID);
             const availableItems = calculateCurrentStock(transactions, productID);
             if (availableItems === 0 || quantity > availableItems) {
@@ -19,7 +19,7 @@ export async function saleController(req: Request, res: Response, next: NextFunc
             }
             await saveTransactionService(order, 0, availableItems);
         } else {
-            const { purchaseThisMonth, totalStock } = product_data;
+            const { purchaseThisMonth, totalStock } = productData;
             if (totalStock === 0 || quantity > totalStock) {
                 return res.status(400).json({ error: true, message: 'not enough stocks' });
             }
