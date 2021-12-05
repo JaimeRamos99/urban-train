@@ -8,7 +8,6 @@ import { Order } from '../application/interfaces/order';
 
 export async function purchaseController(req: Request, res: Response, next: NextFunction): Promise<any> {
     try {
-        // change camel case
         const { productData, order }: any = await getRedisData(req.body, OrderType.purchase);
         const { productID, quantity }: Order = order;
 
