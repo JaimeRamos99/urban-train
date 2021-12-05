@@ -16,7 +16,7 @@ export async function purchaseController(req: Request, res: Response, next: Next
         if (!product_data) {
             const transactions = await getStockFromDB(productID);
             const availableItems = calculateCurrentStock(transactions, productID);
-            await saveTransactionService(order, quantity, availableItems);
+            await saveTransactionService(order, quantity, availableItems + quantity);
         } else {
             // check requested quantity does not exceeds the limit
             if (product_data.purchaseThisMonth + quantity > 30) {
