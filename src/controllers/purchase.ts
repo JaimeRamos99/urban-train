@@ -5,7 +5,7 @@ import { saveTransactionService } from '../services/saveTransaction';
 import { getRedisData } from '../services/getRedisData';
 import { OrderType } from '../application/enums/orderType';
 import { Order } from '../application/interfaces/order';
-import { BusinessLogicError } from '../application/entities/errors/businessLogicError';
+import { BusinessLogicError } from '../errors/businessLogicError';
 
 export async function purchaseController(req: Request, res: Response): Promise<any> {
     const { productData, order }: any = await getRedisData(req.body, OrderType.purchase);

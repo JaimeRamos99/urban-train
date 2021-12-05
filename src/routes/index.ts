@@ -4,7 +4,7 @@ import swagger from 'swagger-ui-express';
 import { constants } from '../common/constants';
 import { errorHandler } from '../middlewares/errorHandler';
 import { healthRouter } from './health';
-import { NotFoundError } from '../application/entities/errors/notFoundError';
+import { NotFoundError } from '../errors/notFoundError';
 import { purchaseRouter } from './createPurchase';
 import { saleRouter } from './createSale';
 import { swaggerDocument } from '../swagger';

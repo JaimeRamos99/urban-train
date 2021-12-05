@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { Logger } from '../adapters/logger';
-import { CustomError } from '../application/entities/errors/customError';
+import { CustomError } from '../errors/customError';
 
 export const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
     Logger.error(err.stack);

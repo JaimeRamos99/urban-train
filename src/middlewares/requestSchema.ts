@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import { RequestValidationError } from '../application/entities/errors/requestValidationError';
-import { orderJoiSchema } from '../application/entities/order';
+import { RequestValidationError } from '../errors/requestValidationError';
+import { orderJoiSchema } from '../adapters/requestValidatorJoi/order';
 import { constants } from '../common/constants';
 
 function schemaValidation(req: Request, res: Response, next: NextFunction) {

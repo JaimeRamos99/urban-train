@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { BusinessLogicError } from '../application/entities/errors/businessLogicError';
+import { BusinessLogicError } from '../errors/businessLogicError';
 import { calculateCurrentStock } from '../services/getCurrentStock';
 import { getRedisData } from '../services/getRedisData';
 import { getStockFromDB } from '../adapters/mongo';
