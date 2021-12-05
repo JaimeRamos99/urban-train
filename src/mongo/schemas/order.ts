@@ -17,7 +17,7 @@ const orderSchema = new Schema({
     date: { type: String, required: true, default: getCurrentDate() },
     time: { type: String, default: getCurrentTime() },
     quantity: { type: Number, required: true },
-    productID: { type: String, required: true },
+    productID: { type: String, index: true, required: true },
     productName: { type: String, required: true },
     orderType: { type: String, enum: OrderType },
 });
