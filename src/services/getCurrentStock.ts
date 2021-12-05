@@ -1,6 +1,9 @@
-export function calculateCurrentStock(stockArray: any, productID: string) {
+import { getStockFromDB } from '../adapters/mongo';
+
+export async function calculateCurrentStock(productID: string) {
+    const transactions = await getStockFromDB(productID);
     let total = 0;
-    for (const entry of stockArray) {
+    for (const entry of transactions) {
         if (entry.productID === productID) {
             let delta = entry.quantity;
             if (entry.orderType === 'SALE') {

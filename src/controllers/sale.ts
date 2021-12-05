@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import { BusinessLogicError } from '../errors/businessLogicError';
 import { calculateCurrentStock } from '../services/getCurrentStock';
 import { getRedisData } from '../services/getRedisData';
-import { getStockFromDB } from '../adapters/mongo';
 import { Order } from '../application/interfaces/order';
 import { OrderType } from '../application/enums/orderType';
 import { saveTransactionService } from '../services/saveTransaction';
@@ -12,8 +11,7 @@ export async function saleController(req: Request, res: Response): Promise<any> 
     const { productID, quantity }: Order = order;
 
     if (!productData) {
-        const transactions = await getStockFromDB(productID);
-        const availableItems = calculateCurrentStock(transactions, productID);
+        const availableItems: number = await calculateCurrentStock(productID);
         if (availableItems === 0 || quantity > availableItems) {
             throw new BusinessLogicError('not enough stocks');
         }
