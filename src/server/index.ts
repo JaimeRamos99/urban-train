@@ -5,7 +5,7 @@ import { WebServer } from '../application/interfaces/server';
 import { morganMiddleware } from '../middlewares/morgan';
 import { Logger } from '../logger';
 import { envVars } from '../common/utils/envVarsHandler';
-import bodyParser from 'body-parser';
+import { json } from 'body-parser';
 import { closeConnection, createConnection } from '../mongo';
 import Redis from '../redis';
 
@@ -20,7 +20,7 @@ export default class implements WebServer {
     }
 
     async setup(): Promise<void> {
-        this.app.use(bodyParser.json());
+        this.app.use(json());
         this.app.use(morganMiddleware);
         this.app.use(routes);
         await createConnection();
