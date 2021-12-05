@@ -8,6 +8,7 @@ import { Order } from '../application/interfaces/order';
 
 export async function purchaseController(req: Request, res: Response, next: NextFunction): Promise<any> {
     try {
+        // change camel case
         const { product_data, order }: any = await getRedisData(req.body, OrderType.purchase);
         const { productID, quantity }: Order = order;
 
@@ -21,7 +22,6 @@ export async function purchaseController(req: Request, res: Response, next: Next
             if (product_data.purchaseThisMonth + quantity > 30) {
                 return res.status(400).json({ error: true, status: 'not enough slots available for this item' });
             }
-
             await saveTransactionService(
                 order,
                 product_data.purchaseThisMonth + quantity,
