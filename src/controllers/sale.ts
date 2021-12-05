@@ -24,6 +24,7 @@ export async function saleController(req: Request, res: Response, next: NextFunc
                 return res.status(400).json({ error: true, message: 'not enough stocks' });
             }
             await saveTransactionService(order, purchaseThisMonth, totalStock - quantity);
+            return res.status(200).json({ error: false, message: 'successful sale' });
         }
     } catch (error) {
         next(error);
