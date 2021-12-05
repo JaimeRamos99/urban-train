@@ -5,9 +5,9 @@ services:
     container_name: redis
     ports:
       - '6379'
-  mongodb_container:
+  mongo:
     image: mongo:latest
-    container_name: mongodb_container
+    container_name: mongo
     environment:
       - MONGO_INITDB_DATABASE=orders
     ports:
@@ -18,10 +18,14 @@ services:
     build:
       context: .
     container_name: backend
+    environment:
+      - NODE_ENV=local
+      - PORT=3000
+      - MONGO_HOST=mongodb://mongo:27017/orders
     ports:
       - '3000:3000'
     depends_on:
-      - mongodb_container
+      - mongo
       - redis
     volumes:
       - .:/app

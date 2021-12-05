@@ -10,9 +10,6 @@ COPY package*.json ./
 COPY tsconfig.json ./
 COPY src /app/src
 
-ENV NODE_ENV=local
-ENV PORT=3000
-
 RUN ls -a
 RUN yarn install
 #uncomment this
