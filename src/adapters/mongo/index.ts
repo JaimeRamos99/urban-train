@@ -13,8 +13,8 @@ export async function saveTransaction(order: Order): Promise<void> {
     const newSaleOrder = new orderModel(order);
     await newSaleOrder.save();
 }
-export async function getStockFromDB(idProduct: string): Promise<any> {
-    return await orderModel.find({ idProducto: { $eq: idProduct } });
+export async function getStockFromDB(productID: string): Promise<any> {
+    return await orderModel.find({ productID: { $eq: productID } });
 }
 
 export async function closeConnection(): Promise<void> {

@@ -15,7 +15,8 @@ ENV PORT=3000
 
 RUN ls -a
 RUN yarn install
-RUN yarn run build
+#uncomment this
+#RUN yarn run build
 
 EXPOSE 3000
 #change this
