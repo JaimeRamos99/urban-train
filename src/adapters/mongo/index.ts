@@ -1,7 +1,7 @@
 import { model, connect, connection } from 'mongoose';
 import { orderSchema, OrderMongo } from './schemas/order';
-import { Order } from '../application/interfaces/order';
-import { envVars } from '../common/utils/envVarsHandler';
+import { Order } from '../../application/interfaces/order';
+import { envVars } from '../../common/utils/envVarsHandler';
 
 const orderModel = model<OrderMongo>('Order', orderSchema);
 

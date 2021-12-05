@@ -3,11 +3,11 @@ import express, { Express } from 'express';
 import routes from '../routes';
 import { WebServer } from '../application/interfaces/server';
 import { morganMiddleware } from '../middlewares/morgan';
-import { Logger } from '../logger';
+import { Logger } from '../adapters/logger';
 import { envVars } from '../common/utils/envVarsHandler';
 import { json } from 'body-parser';
-import { closeConnection, createConnection } from '../mongo';
-import Redis from '../redis';
+import { closeConnection, createConnection } from '../adapters/mongo';
+import Redis from '../adapters/redis';
 
 export default class implements WebServer {
     private app: Express;

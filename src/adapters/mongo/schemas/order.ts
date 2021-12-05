@@ -1,6 +1,6 @@
 import { Schema, Document } from 'mongoose';
-import { OrderType } from '../../application/enums/orderType';
-import { getCurrentDate, getCurrentTime } from '../../common/utils/getTime';
+import { OrderType } from '../../../application/enums/orderType';
+import { getCurrentDate, getCurrentTime } from '../../../common/utils/getTime';
 
 interface OrderMongo extends Document {
     id: string;

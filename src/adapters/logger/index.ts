@@ -1,5 +1,5 @@
 import winston from 'winston';
-import { envVars } from '../common/utils/envVarsHandler';
+import { envVars } from '../../common/utils/envVarsHandler';
 
 const levels = {
     error: 0,

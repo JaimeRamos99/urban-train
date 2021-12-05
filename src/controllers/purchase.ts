@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { getStockFromDB } from '../mongo';
+import { getStockFromDB } from '../adapters/mongo';
 import { calculateCurrentStock } from '../services/getCurrentStock';
 import { saveTransactionService } from '../services/saveTransaction';
 import { getRedisData } from '../services/getRedisData';

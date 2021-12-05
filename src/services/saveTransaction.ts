@@ -1,8 +1,8 @@
 import { Order } from '../application/interfaces/order';
 import { RedisObject } from '../application/interfaces/redisObject';
 import { calculateRedisTTL } from '../common/utils/calculateRedisTTL';
-import { saveTransaction } from '../mongo';
-import Redis from '../redis';
+import { saveTransaction } from '../adapters/mongo';
+import Redis from '../adapters/redis';
 
 export async function saveTransactionService(order: Order, purchaseThisMonth: number, totalStock: number) {
     const redis = new Redis();

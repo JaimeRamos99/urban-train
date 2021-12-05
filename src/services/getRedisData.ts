@@ -1,6 +1,6 @@
 import { OrderType } from '../application/enums/orderType';
 import { Order } from '../application/interfaces/order';
-import Redis from '../redis';
+import Redis from '../adapters/redis';
 
 export async function getRedisData(order: Order, orderType: OrderType): Promise<any> {
     order.orderType = orderType;

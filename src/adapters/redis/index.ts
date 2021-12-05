@@ -1,6 +1,6 @@
 import IORedis from 'ioredis';
-import { CacheStorage } from '../application/interfaces/cache';
-import { RedisObject } from '../application/interfaces/redisObject';
+import { CacheStorage } from '../../application/interfaces/cache';
+import { RedisObject } from '../../application/interfaces/redisObject';
 export default class Redis implements CacheStorage {
     private redisInstance: any;
 

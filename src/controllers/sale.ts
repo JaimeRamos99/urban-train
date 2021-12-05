@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { OrderType } from '../application/enums/orderType';
-import { getStockFromDB } from '../mongo';
+import { getStockFromDB } from '../adapters/mongo';
 import { calculateCurrentStock } from '../services/getCurrentStock';
 import { getRedisData } from '../services/getRedisData';
 import { saveTransactionService } from '../services/saveTransaction';
