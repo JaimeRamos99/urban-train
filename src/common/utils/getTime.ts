@@ -1,9 +1,10 @@
 import moment from 'moment-timezone';
+import { constants } from '../constants';
 
 export function getCurrentDate() {
-    return moment.tz('America/Bogota').format('DD/MM/YYYY');
+    return moment.tz(constants.time.timeZone).format(constants.time.dateFormat);
 }
 
 export function getCurrentTime() {
-    return moment.tz('America/Bogota').format('HH:mm:ss');
+    return moment.tz(constants.time.timeZone).format(constants.time.timeFormat);
 }

@@ -1,11 +1,12 @@
 import { model, connect, connection } from 'mongoose';
 import { orderSchema, OrderMongo } from './schemas/order';
 import { Order } from '../application/interfaces/order';
+import { envVars } from '../common/utils/envVarsHandler';
 
 const orderModel = model<OrderMongo>('Order', orderSchema);
 
 export async function createConnection(): Promise<void> {
-    await connect('mongodb://mongodb_container:27017/orders');
+    await connect(envVars.MONGO_HOST);
 }
 
 export async function saveTransaction(order: Order): Promise<void> {

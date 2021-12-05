@@ -5,6 +5,8 @@ import { saveTransaction } from '../mongo';
 import Redis from '../redis';
 
 export async function saveTransactionService(order: Order, purchaseThisMonth: number, totalStock: number) {
+    const redis = new Redis();
+
     // new redis object
     const new_order_data: RedisObject = {
         purchaseThisMonth: purchaseThisMonth,
@@ -12,10 +14,7 @@ export async function saveTransactionService(order: Order, purchaseThisMonth: nu
     };
 
     const TTL = calculateRedisTTL();
-
-    const redis = new Redis();
     await redis.set(order.productID, new_order_data, TTL);
-
     // add order to the database
     await saveTransaction(order);
 }

@@ -5,9 +5,10 @@ dotenv.config();
 const environmentVariables = {
     NODE_ENV: process.env.NODE_ENV,
     PORT: process.env.PORT ? Number(process.env.PORT) : undefined,
+    MONGO_HOST: process.env.MONGO_HOST,
 };
 
-const getConfig = (): Env => {
+const getConfig = (): any => {
     return environmentVariables;
 };
 
