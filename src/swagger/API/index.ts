@@ -1,5 +1,6 @@
-import { purchaseModule } from './newPurchase/index';
-import { saleModule } from './newSale/index';
+import { healthModule } from './health';
+import { purchaseModule } from './newPurchase';
+import { saleModule } from './newSale';
 
 export const docs = {
     paths: {
@@ -8,6 +9,9 @@ export const docs = {
         },
         '/registrar-venta': {
             ...saleModule,
+        },
+        '/health': {
+            ...healthModule,
         },
     },
 };
