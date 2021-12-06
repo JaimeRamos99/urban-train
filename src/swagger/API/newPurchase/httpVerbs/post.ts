@@ -1,8 +1,9 @@
-//import f from '../../../components/index';
+import { constants } from '../../../../common/constants';
+
 export const postRequest = {
     post: {
-        tags: ['module1'],
-        description: 'create a modulo1 instance',
+        tags: ['purchase'],
+        description: 'save a purchase transaction',
         parameters: [],
         requestBody: {
             content: {
@@ -15,10 +16,13 @@ export const postRequest = {
         },
         responses: {
             '201': {
-                description: 'Todo created successfully',
+                description: constants.responseMessages.purchase.successful,
+            },
+            '400': {
+                description: constants.responseMessages.purchase.noSlots,
             },
             '500': {
-                description: 'Server error',
+                description: constants.responseMessages.general.error,
             },
         },
     },

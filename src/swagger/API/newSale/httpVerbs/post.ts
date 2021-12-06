@@ -2,7 +2,7 @@ import { constants } from '../../../../common/constants';
 
 export const postRequest = {
     post: {
-        tags: ['module2'],
+        tags: ['sale'],
         description: 'save a sale transaction',
         parameters: [],
         requestBody: {
