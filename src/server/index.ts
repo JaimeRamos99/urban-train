@@ -5,7 +5,6 @@ import { WebServer } from '../application/interfaces/server';
 import { morganMiddleware } from '../middlewares/morgan';
 import { Logger } from '../adapters/logger';
 import { envVars } from '../common/utils/envVarsHandler';
-import { json, urlencoded } from 'body-parser';
 import { closeConnection, createConnection } from '../adapters/mongo';
 import Redis from '../adapters/redis';
 
@@ -20,8 +19,8 @@ export default class implements WebServer {
     }
 
     async setup(): Promise<void> {
-        this.app.use(json());
-        this.app.use(urlencoded({ extended: true }));
+        this.app.use(express.json());
+        this.app.use(express.urlencoded({ extended: true }));
         this.app.use(morganMiddleware);
         this.app.use(routes);
         await createConnection();
