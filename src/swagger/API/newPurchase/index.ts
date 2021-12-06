@@ -1,4 +1,4 @@
 import { postRequest } from './httpVerbs/post';
-export const modulo1 = {
+export const purchaseModule = {
     ...postRequest,
 };

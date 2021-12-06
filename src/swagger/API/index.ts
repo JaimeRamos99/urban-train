@@ -1,13 +1,13 @@
-import { modulo1 } from './newPurchase/index';
-import { modulo2 } from './newSale/index';
+import { purchaseModule } from './newPurchase/index';
+import { saleModule } from './newSale/index';
 
 export const docs = {
     paths: {
         '/registrar-compra': {
-            ...modulo1,
+            ...purchaseModule,
         },
         '/registrar-venta': {
-            ...modulo2,
+            ...saleModule,
         },
     },
 };
