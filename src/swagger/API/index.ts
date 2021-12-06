@@ -4,13 +4,13 @@ import { saleModule } from './newSale';
 
 export const docs = {
     paths: {
-        '/registrar-compra': {
+        '/api/v1/registrar-compra': {
             ...purchaseModule,
         },
-        '/registrar-venta': {
+        '/api/v1/registrar-venta': {
             ...saleModule,
         },
-        '/health': {
+        '/api/v1/health': {
             ...healthModule,
         },
     },

@@ -21,6 +21,7 @@ services:
     environment:
       - NODE_ENV=local
       - PORT=3000
+      - VERSION=v1
       - MONGO_HOST=mongodb://mongo:27017/orders
     ports:
       - '3000:3000'

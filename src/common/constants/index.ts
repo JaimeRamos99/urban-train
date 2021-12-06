@@ -1,9 +1,11 @@
+import { envVars } from '../utils/envVarsHandler';
+
 export const constants = {
     path: {
-        docs: '/api-docs',
-        createPurchase: '/registrar-compra',
-        createSale: '/registrar-venta',
-        health: '/health',
+        docs: `/api/${envVars.VERSION}/api-docs`,
+        createPurchase: `/api/${envVars.VERSION}/registrar-compra`,
+        createSale: `/api/${envVars.VERSION}/registrar-venta`,
+        health: `/api/${envVars.VERSION}/health`,
     },
 
     joiSchemaOptions: {
