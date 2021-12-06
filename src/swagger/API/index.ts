@@ -1,5 +1,5 @@
-import { modulo1 } from './module1/index';
-import { modulo2 } from './module2/index';
+import { modulo1 } from './newPurchase/index';
+import { modulo2 } from './newSale/index';
 
 export const docs = {
     paths: {
