@@ -11,11 +11,11 @@ export async function saleController(req: Request, res: Response): Promise<any> 
     const { productID, quantity }: Order = order;
 
     if (!productData) {
-        const availableItems: number = await calculateCurrentStock(productID);
-        if (availableItems === 0 || quantity > availableItems) {
+        const { purchaseThisMonth, availableItems } = await calculateCurrentStock(productID);
+        if (quantity > availableItems) {
             throw new BusinessLogicError('not enough stocks');
         }
-        await saveTransactionService(order, 0, availableItems);
+        await saveTransactionService(order, purchaseThisMonth, availableItems);
     } else {
         const { purchaseThisMonth, totalStock } = productData;
         if (totalStock === 0 || quantity > totalStock) {

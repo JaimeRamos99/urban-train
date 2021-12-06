@@ -12,8 +12,11 @@ export async function purchaseController(req: Request, res: Response): Promise<a
 
     // there's no record in  cache
     if (!productData) {
-        const availableItems = await calculateCurrentStock(productID);
-        await saveTransactionService(order, quantity, availableItems + quantity);
+        const { purchaseThisMonth, availableItems } = await calculateCurrentStock(productID);
+        if (purchaseThisMonth + quantity > 30) {
+            throw new BusinessLogicError('not enough slots available for this item');
+        }
+        await saveTransactionService(order, purchaseThisMonth, availableItems + quantity);
     } else {
         // check requested quantity does not exceeds the limit
         if (productData.purchaseThisMonth + quantity > 30) {
