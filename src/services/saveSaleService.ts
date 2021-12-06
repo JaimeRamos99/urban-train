@@ -12,11 +12,12 @@ export async function saveSaleService(
     quantity: number,
     addToCache: boolean,
 ) {
-    const initialTotalStock = purchaseThisMonth;
+    const initialTotalStock = totalStock;
     if (quantity <= totalStock) {
         totalStock = totalStock - quantity;
         addToCache = true;
     }
+
     if (addToCache) {
         const redis = new Redis();
         const new_order_data: RedisObject = {
