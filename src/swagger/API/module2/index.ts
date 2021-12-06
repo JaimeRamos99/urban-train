@@ -1,4 +1,4 @@
-import { getRequest } from './httpVerbs/get';
+import { postRequest } from './httpVerbs/get';
 export const modulo2 = {
-    ...getRequest,
+    ...postRequest,
 };

@@ -1,54 +1,81 @@
 export const appComponents = {
     components: {
         schemas: {
-            id: {
-                type: 'string',
-                description: 'An id of a todo',
-                example: 'tyVgf',
-            },
-            Modulo1: {
+            Transactions: {
                 type: 'object',
                 properties: {
                     id: {
                         type: 'string',
-                        description: 'Todo identification number',
-                        example: 'ytyVgh',
+                        description: 'An id of transaction (purchase or sale)',
+                        minLength: 3,
+                        maxLength: 30,
+                        example: 'any joi valid string',
+                        required: true,
                     },
-                    title: {
+                    date: {
+                        type: 'date',
+                        description: 'day on which the transaction took place',
+                        format: 'DD/MM/YYYY',
+                        example: '14/05/2021',
+                        required: true,
+                    },
+                    time: {
                         type: 'string',
-                        description: "Todo's title",
-                        example: 'Coding in JavaScript',
+                        description: 'The exact time the transaction took place',
+                        length: 8,
+                        format: 'HH:mm:ss',
+                        example: '20:50:30',
+                        required: false,
                     },
-                    completed: {
-                        type: 'boolean',
-                        description: 'The status of the todo',
-                        example: false,
+                    quantity: {
+                        type: 'number',
+                        description: 'requested quantity for transaction, must be an integer',
+                        minimun: 1,
+                        maximum: 30,
+                        example: 1,
+                        required: false,
+                    },
+                    productID: {
+                        type: 'string',
+                        description: 'id of the product',
+                        minLength: 3,
+                        maxLength: 30,
+                        example: 'awsde',
+                        required: true,
+                    },
+                    productName: {
+                        type: 'string',
+                        description: 'name of the product',
+                        minLength: 3,
+                        maxLength: 30,
+                        example: 'opnd',
+                        required: true,
                     },
                 },
             },
-            TodoInput: {
-                type: 'object',
-                properties: {
-                    title: {
-                        type: 'string',
-                        description: "Todo's title",
-                        example: 'Coding in JavaScript',
-                    },
-                    completed: {
-                        type: 'boolean',
-                        description: 'The status of the todo',
-                        example: false,
-                    },
-                },
-            },
-            Error: {
+            ErrorDetails: {
                 type: 'object',
                 properties: {
                     message: {
                         type: 'string',
+                        required: true,
                     },
-                    internal_code: {
+                    field: {
                         type: 'string',
+                        required: false,
+                    },
+                },
+            },
+            ErrorResponse: {
+                type: 'object',
+                properties: {
+                    error: {
+                        type: 'boolean',
+                        value: true,
+                    },
+                    errors: {
+                        type: 'Array',
+                        items: 'ErrorDetails',
                     },
                 },
             },

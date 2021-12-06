@@ -1,6 +1,6 @@
 //import f from '../../../components/index';
-export const getRequest = {
-    get: {
+export const postRequest = {
+    post: {
         tags: ['module2'],
         description: 'create a modulo1 instance',
         parameters: [],
@@ -8,7 +8,7 @@ export const getRequest = {
             content: {
                 'application/json': {
                     schema: {
-                        $ref: '#components/schemas/Modulo1',
+                        $ref: '#components/schemas/Transactions',
                     },
                 },
             },

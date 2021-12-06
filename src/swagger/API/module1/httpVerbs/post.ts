@@ -8,7 +8,7 @@ export const postRequest = {
             content: {
                 'application/json': {
                     schema: {
-                        $ref: '#components/schemas/Modulo1',
+                        $ref: '#components/schemas/Transactions',
                     },
                 },
             },

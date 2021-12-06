@@ -3,10 +3,10 @@ import { modulo2 } from './module2/index';
 
 export const docs = {
     paths: {
-        '/appModulo1': {
+        '/registrar-compra': {
             ...modulo1,
         },
-        '/appModulo2': {
+        '/registrar-venta': {
             ...modulo2,
         },
     },
