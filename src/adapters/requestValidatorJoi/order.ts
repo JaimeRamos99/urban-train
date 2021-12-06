@@ -7,7 +7,7 @@ const Joi = baseJoi.extend(joiDate);
 const orderJoiSchema = Joi.object({
     id: Joi.string().required(),
     date: Joi.date().format(constants.time.dateFormat).raw().required(),
-    quantity: Joi.number().required(),
+    quantity: Joi.number().integer().min(1).required(),
     productID: Joi.string().required(),
     productName: Joi.string().required(),
 });
