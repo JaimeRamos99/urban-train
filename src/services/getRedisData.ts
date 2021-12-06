@@ -9,5 +9,6 @@ export async function getRedisData(order: Order, orderType: OrderType): Promise<
     const redis = new Redis();
     const productDataString: string = await redis.get(productID);
     const productData = JSON.parse(productDataString);
+
     return { productData, order };
 }
