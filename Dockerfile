@@ -11,10 +11,10 @@ COPY tsconfig.json ./
 COPY src /app/src
 
 RUN ls -a
-RUN yarn install
-#uncomment this
-#RUN yarn run build
+RUN yarn install --production
+
+RUN yarn run build
 
 EXPOSE 3000
-#change this
-CMD ["yarn", "dev"]
+
+CMD ["yarn", "prod"]
