@@ -4,6 +4,7 @@ import { getRedisData } from '../services/getRedisData';
 import { Order } from '../application/interfaces/order';
 import { OrderType } from '../application/enums/orderType';
 import { saveSaleService } from '../services/saveSaleService';
+import { constants } from '../common/constants';
 
 export async function saleController(req: Request, res: Response): Promise<any> {
     const { productData, order }: any = await getRedisData(req.body, OrderType.sale);
@@ -16,5 +17,5 @@ export async function saleController(req: Request, res: Response): Promise<any> 
         const { purchaseThisMonth, totalStock } = productData;
         await saveSaleService(order, purchaseThisMonth, totalStock, quantity, false);
     }
-    return res.status(200).json({ error: false, message: 'successful sale' });
+    return res.status(200).json({ error: false, message: constants.responseMessages.sale.successful });
 }

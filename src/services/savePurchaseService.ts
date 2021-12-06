@@ -1,4 +1,5 @@
 import { Order } from '../application/interfaces/order';
+import { constants } from '../common/constants';
 import { RedisObject } from '../application/interfaces/redisObject';
 import { calculateRedisTTL } from '../common/utils/calculateRedisTTL';
 import { saveTransaction } from '../adapters/mongo';
@@ -32,7 +33,7 @@ export async function savePurchaseService(
 
     // check availability to purchase this month
     if (initialPurchaseThisMonth + quantity > 30) {
-        throw new BusinessLogicError('not enough slots available for this item');
+        throw new BusinessLogicError(constants.responseMessages.purchase.noSlots);
     }
     // add order to the database
     await saveTransaction(order);

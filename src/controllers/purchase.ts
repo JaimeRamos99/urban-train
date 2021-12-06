@@ -4,6 +4,7 @@ import { savePurchaseService } from '../services/savePurchaseService';
 import { getRedisData } from '../services/getRedisData';
 import { OrderType } from '../application/enums/orderType';
 import { Order } from '../application/interfaces/order';
+import { constants } from '../common/constants';
 
 export async function purchaseController(req: Request, res: Response): Promise<any> {
     const { productData, order }: any = await getRedisData(req.body, OrderType.purchase);
@@ -17,5 +18,5 @@ export async function purchaseController(req: Request, res: Response): Promise<a
         // there's data in cache for this product
         await savePurchaseService(order, productData.purchaseThisMonth, productData.totalStock, quantity, false);
     }
-    return res.status(200).json({ error: false, message: 'successful purchase' });
+    return res.status(200).json({ error: false, message: constants.responseMessages.purchase.successful });
 }

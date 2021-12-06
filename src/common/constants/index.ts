@@ -19,7 +19,9 @@ export const constants = {
     },
 
     responseMessages: {
-        general: {},
+        general: {
+            error: 'something went wrong',
+        },
         purchase: {
             successful: 'successful purchase',
             noSlots: 'not enough slots available for this item',

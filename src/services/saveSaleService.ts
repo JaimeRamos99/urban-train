@@ -1,4 +1,5 @@
 import { Order } from '../application/interfaces/order';
+import { constants } from '../common/constants';
 import { RedisObject } from '../application/interfaces/redisObject';
 import { calculateRedisTTL } from '../common/utils/calculateRedisTTL';
 import { saveTransaction } from '../adapters/mongo';
@@ -31,7 +32,7 @@ export async function saveSaleService(
 
     // check requested quantity does not exceeds the limit
     if (quantity > initialTotalStock) {
-        throw new BusinessLogicError('not enough stocks');
+        throw new BusinessLogicError(constants.responseMessages.sale.noStock);
     }
     // add order to the database
     await saveTransaction(order);
