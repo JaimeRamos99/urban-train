@@ -15,11 +15,15 @@ export async function savePurchaseService(
 ) {
     const initialPurchaseThisMonth = purchaseThisMonth;
 
+    // valid purchase
     if (purchaseThisMonth + quantity <= 30) {
         purchaseThisMonth = purchaseThisMonth + quantity;
         totalStock = totalStock + quantity;
         addToCache = true;
     }
+
+    // If info for that product exists on db but weren't on cache
+    // or product info has been updated
     if (addToCache) {
         const redis = new Redis();
         const new_order_data: RedisObject = {
@@ -27,7 +31,9 @@ export async function savePurchaseService(
             totalStock: totalStock,
         };
 
+        // calculate time remaining until end of month
         const TTL = calculateRedisTTL();
+        // save order to cache
         await redis.set(order.productID, new_order_data, TTL);
     }
 
@@ -35,6 +41,6 @@ export async function savePurchaseService(
     if (initialPurchaseThisMonth + quantity > 30) {
         throw new BusinessLogicError(constants.responseMessages.purchase.noSlots);
     }
-    // add order to the database
+    // save order to the database
     await saveTransaction(order);
 }

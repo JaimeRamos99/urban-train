@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { calculateCurrentStock } from '../services/getCurrentStock';
+import { calculateCurrentStock } from '../services/calculateCurrentStock';
 import { getRedisData } from '../services/getRedisData';
 import { Order } from '../application/interfaces/order';
 import { OrderType } from '../application/enums/orderType';

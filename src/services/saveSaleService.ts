@@ -14,11 +14,15 @@ export async function saveSaleService(
     addToCache: boolean,
 ) {
     const initialTotalStock = totalStock;
+
+    // valid sale
     if (quantity <= totalStock) {
         totalStock = totalStock - quantity;
         addToCache = true;
     }
 
+    // If info for that product exists on db but weren't on cache
+    // or product info has been updated
     if (addToCache) {
         const redis = new Redis();
         const new_order_data: RedisObject = {
@@ -26,7 +30,9 @@ export async function saveSaleService(
             totalStock: totalStock,
         };
 
+        // calculate time remaining until end of month
         const TTL = calculateRedisTTL();
+        // save order to cache
         await redis.set(order.productID, new_order_data, TTL);
     }
 
@@ -34,6 +40,7 @@ export async function saveSaleService(
     if (quantity > initialTotalStock) {
         throw new BusinessLogicError(constants.responseMessages.sale.noStock);
     }
-    // add order to the database
+
+    // save order to the database
     await saveTransaction(order);
 }
