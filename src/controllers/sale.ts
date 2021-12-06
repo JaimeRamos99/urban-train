@@ -17,5 +17,5 @@ export async function saleController(req: Request, res: Response): Promise<any> 
         const { purchaseThisMonth, totalStock } = productData;
         await saveSaleService(order, purchaseThisMonth, totalStock, quantity, false);
     }
-    return res.status(200).json({ error: false, message: constants.responseMessages.sale.successful });
+    return res.status(201).json({ error: false, message: constants.responseMessages.sale.successful });
 }

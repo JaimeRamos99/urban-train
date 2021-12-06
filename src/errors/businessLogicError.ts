@@ -1,7 +1,7 @@
 import { CustomError } from './customError';
 
 export class BusinessLogicError extends CustomError {
-    statusCode = 500;
+    statusCode = 400;
 
     constructor(public message: string) {
         super(message);
