@@ -15,7 +15,8 @@
         "prepare": "husky install",
         "check-ts": "yarn tsc",
         "pre-commit-lint": "yarn check-ts && yarn lint-staged",
-        "test": "jest --watchAll --no-cache",
+        "test": "jest --no-cache",
+        "test:watch": "jest --watchAll --no-cache",
         "test:coverage": "jest --coverage"
     },
     "jest": {
