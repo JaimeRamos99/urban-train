@@ -16,14 +16,11 @@
         "check-ts": "yarn tsc",
         "pre-commit-lint": "yarn check-ts && yarn lint-staged",
         "test": "jest --watchAll --no-cache",
-        "test:coverage": "jest-coverage"
+        "test:coverage": "jest --coverage"
     },
     "jest": {
         "preset": "ts-jest",
-        "testEnvironment": "node",
-        "setupFilesAfterEnv": [
-            "./src/tests/setup.ts"
-        ]
+        "testEnvironment": "node"
     },
     "devDependencies": {
         "@commitlint/cli": "12.1.4",

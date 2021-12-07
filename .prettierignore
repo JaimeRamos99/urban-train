@@ -3,3 +3,4 @@ bin
 .husky
 .vscode
 docker-compose.yml
+coverage
