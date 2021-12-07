@@ -2,5 +2,5 @@
 
 In order to test the app run:
 ```
-docker-compose up -d build
+docker-compose up -d --build
 ```
