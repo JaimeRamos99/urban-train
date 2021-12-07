@@ -4,3 +4,7 @@ In order to test the app run:
 ```
 docker-compose up -d --build
 ```
+
+Then go to http://localhost:3000/api/v1/api-docs
+
+and test the endpoints
