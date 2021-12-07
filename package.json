@@ -22,7 +22,12 @@
     "jest": {
         "preset": "ts-jest",
         "testEnvironment": "node",
-        "modulePathIgnorePatterns": ["bin"]
+        "modulePathIgnorePatterns": [
+            "bin"
+        ],
+        "setupFilesAfterEnv": [
+            "./src/tests/setup.ts"
+        ]
     },
     "devDependencies": {
         "@commitlint/cli": "12.1.4",
