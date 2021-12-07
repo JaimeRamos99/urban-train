@@ -21,7 +21,8 @@
     },
     "jest": {
         "preset": "ts-jest",
-        "testEnvironment": "node"
+        "testEnvironment": "node",
+        "modulePathIgnorePatterns": ["bin"]
     },
     "devDependencies": {
         "@commitlint/cli": "12.1.4",
