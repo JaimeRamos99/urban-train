@@ -1,6 +1,7 @@
+import { envVars } from './common/utils/envVarsHandler';
 import WebServer from './server';
 
-const server = new WebServer(3000);
+const server = new WebServer(envVars.PORT || 3000);
 
 const main = async () => {
     server.setup();
