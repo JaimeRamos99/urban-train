@@ -1,3 +1,4 @@
+import { Request } from 'express';
 import { OrderType } from '../application/enums/orderType';
 import { Order } from '../application/interfaces/order';
 
@@ -15,7 +16,18 @@ function buildOrder({ ...overrides } = {}) {
 }
 
 function buildReq({ ...overrides } = {}) {
-    const req = { body: {}, params: {}, ...overrides };
+    const req = {
+        body: {
+            firstName: 'J',
+            lastName: 'Doe',
+            email: 'jdoe@abc123.com',
+            password: 'Abcd1234',
+            passwordConfirm: 'Abcd1234',
+            company: 'ABC Inc.',
+        },
+        ...overrides,
+    } as Request;
+
     return req;
 }
 
