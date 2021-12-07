@@ -7,21 +7,19 @@ export async function calculateCurrentStock(productID: string) {
     let purchaseThisMonth = 0;
 
     for (const entry of transactions) {
-        if (entry.productID === productID) {
-            let delta = entry.quantity;
+        let delta = entry.quantity;
 
-            if (entry.orderType === 'SALE') {
-                delta = delta * -1;
-            }
-            const transactionMonth = entry.date.substring(3, 5);
-            const transactionYear = entry.date.substring(6, 10);
-            const currentDate = getCurrentDate();
-            const currentMonth = currentDate.substring(3, 5);
-            const currentYear = currentDate.substring(6, 10);
-            totalStock += delta;
-            if (transactionMonth === currentMonth && transactionYear == currentYear && entry.orderType === 'PURCHASE') {
-                purchaseThisMonth += entry.quantity;
-            }
+        if (entry.orderType === 'SALE') {
+            delta = delta * -1;
+        }
+        const transactionMonth = entry.date.substring(3, 5);
+        const transactionYear = entry.date.substring(6, 10);
+        const currentDate = getCurrentDate();
+        const currentMonth = currentDate.substring(3, 5);
+        const currentYear = currentDate.substring(6, 10);
+        totalStock += delta;
+        if (transactionMonth === currentMonth && transactionYear == currentYear && entry.orderType === 'PURCHASE') {
+            purchaseThisMonth += entry.quantity;
         }
     }
     return { purchaseThisMonth, totalStock };
