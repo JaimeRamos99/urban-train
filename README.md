@@ -7,4 +7,9 @@ docker-compose up -d --build
 
 Then go to http://localhost:3000/api/v1/api-docs
 
-and test the endpoints
+and test the endpoints.
+
+Some Details:
+- Read-Through Cache Implemented (Redis)
+- MongoDB used as database
+- Docker-compose as a multi-container manager
